@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Param;
 public interface CompanyMapper {
 
 	@Insert("INSERT INTO company(company_name, company_address) VALUES(#{company.name},#{company.address})")
-	int insert(@Param("comapany") Company company);
+	int insert(@Param("company") Company company);
 }
