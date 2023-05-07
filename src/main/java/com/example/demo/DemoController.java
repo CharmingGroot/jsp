@@ -19,4 +19,11 @@ public class DemoController {
 		return "hello";
 	}
 	
+	
+	@RequestMapping("/base")
+	public String base() {
+		System.out.println("base....");
+		return "base";
+	}
+	
 }
