@@ -17,6 +17,9 @@ public class CompanyController {
 	@Autowired
 	private CompanyMapper companyMapper;
 	
+	@Autowired
+	private CompanyService compService;
+	
 	@PostMapping("")
 	public int post(@RequestBody Company company) {
 		
@@ -25,7 +28,7 @@ public class CompanyController {
 	
 	@GetMapping("")
 	public List<Company> getAll(){
-		return companyMapper.getAll();
+		return compService.getAll();
 	}
 	
 	
@@ -33,4 +36,6 @@ public class CompanyController {
 	public Company getById(@PathVariable("id") int id){
 		return companyMapper.getById(id);
 	}
+	
+	
 }

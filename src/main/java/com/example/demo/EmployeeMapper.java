@@ -27,4 +27,7 @@ public interface EmployeeMapper {
 	@Select("SELECT * FROM employee WHERE id=#{id}")
 	@ResultMap("EmployeeMap") // 22번라인을 재사용.
 	Employee getById(@Param("id") int id);
+
+	@Select("SELECT * FROM employee WHERE company_id=#{companyId}")
+	List<Employee> getByCompanyId(@Param("companyId") int companyId);
 }

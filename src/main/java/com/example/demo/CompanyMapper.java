@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Many;
 
 @Mapper
 public interface CompanyMapper {
@@ -21,7 +22,8 @@ public interface CompanyMapper {
 	@Select("SELECT * FROM company")
 	@Results(id="CompanyMap", value={
 		@Result(property="name", column = "company_name"),
-		@Result(property = "address", column = "company_address")
+		@Result(property = "address", column = "company_address"),
+		@Result(property = "employeeList", column = "id", many=@Many(select="com.example.demo.EmployeeMapper.getByCompanyId"))
 	})
 	List<Company> getAll();
 	
