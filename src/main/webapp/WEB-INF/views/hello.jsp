@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	bye
+	<form class="form-login" action = "" method = "post">
+ 	   <input type = "text" class="input" name = "id" placeholder="ID" required>
+    	<input type = "password" class="input" name = "pw" placeholder="PW" required>
+    <button class="btn" type="submit"> 로그인 </button>
+</form>
 </body>
 </html>
