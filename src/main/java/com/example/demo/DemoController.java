@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -44,6 +45,27 @@ public class DemoController {
 	public String base() {
 		System.out.println("base....");
 		return "base";
+	}
+	
+	
+
+	@RequestMapping("/hello/file")
+	public String file(HttpServletRequest request) {
+//		System.out.println("file");
+//		
+//		Map formData = new HashMap<>();
+//		for(String paramName : request.getParameterMap().keySet()) {
+//			String paramValue = request.getParameter(paramName);
+//			
+//			formData.put(paramName, paramValue);
+//		}
+//		
+//		System.out.println(formData.toString());
+		
+		
+		
+		
+		return "fileinput";
 	}
 	
 }
