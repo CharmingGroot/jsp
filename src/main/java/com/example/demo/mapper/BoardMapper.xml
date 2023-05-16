@@ -5,11 +5,6 @@
 
 <mapper namespace="com.example.demo.mapper.BoardMapper">
 
-  <select id="getBoardList" resultType="com.example.demo.vo.Board">
-    SELECT id, title, content, author, created_at, updated_at
-    FROM board
-    ORDER BY id DESC
-    LIMIT #{offset}, #{limit}
-  </select>
+  
 
 </mapper>

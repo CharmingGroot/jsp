@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.board.Page;
 import com.example.demo.mapper.BoardMapper;
 import com.example.demo.mapper.BoardMapperImpl;
 import com.example.demo.vo.Board;
+
 
 
 @Controller
@@ -92,21 +94,25 @@ public class DemoController {
 //    }
 	
 	@GetMapping("/board/list")
-	public String boardList(@RequestParam(defaultValue = "1") int page, Model model) {
-	    int pageSize = 5; // 페이지당 게시글 수
-	    int offset = (page - 1) * pageSize; // 페이지 시작 오프셋
-
-	    List<Board> boardList = boardMapper.getBoardList(offset, pageSize); // 페이징 처리된 게시글 목록 조회
-	    int totalCount = boardMapper.getBoardCount(); // 전체 게시글 수 조회
-
-	    int totalPages = (int) Math.ceil((double) totalCount / pageSize); // 전체 페이지 수 계산
-
+	public String boardList(Model model, @RequestParam(defaultValue = "1") int page) {
+	    int limit = 5; // 페이지당 게시글 수
+	    int offset = (page - 1) * limit;
+	    
+	    List<Board> boardList = boardMapper.getBoardList(offset, limit);
+	    int boardCount = boardMapper.getBoardCount();
+	    
+	    int totalPages = (int) Math.ceil((double) boardCount / limit);
+	    
+	    Page paging = new Page();
+	    paging.setCurrentPage(page);
+	    paging.setTotalPages(totalPages);
+	    
 	    model.addAttribute("boardList", boardList);
-	    model.addAttribute("currentPage", page);
-	    model.addAttribute("totalPages", totalPages);
-
+	    model.addAttribute("page", paging);
+	    
 	    return "boardList";
 	}
+
 	
 	
 	
