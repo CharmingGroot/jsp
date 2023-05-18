@@ -96,17 +96,28 @@ public class DemoController {
 	@GetMapping("/board/list")
 	public String boardList(Model model, @RequestParam(defaultValue = "1") int page) {
 	    int limit = 5; // 페이지당 게시글 수
-	    int offset = (page - 1) * limit;
+	    int offset = (page - 1) * limit; // 페이지에 출력될 데이터의 시작위치.
+	    System.out.println(offset);
 	    
-	    List<Board> boardList = boardMapper.getBoardList(offset, limit);
-	    int boardCount = boardMapper.getBoardCount();
+	    List<Board> boardList = boardMapper.getBoardList(offset, limit); // 리스트 받아옴.
+	    int boardCount = boardMapper.getBoardCount(); // 테이블의 특정 컬럼의 수를 세옴
 	    
 	    int totalPages = (int) Math.ceil((double) boardCount / limit);
+	    
+	    System.out.println("=====================");
+	    System.out.println(" page : " + page);
+	    System.out.println("=====================");
 	    
 	    Page paging = new Page();
 	    paging.setCurrentPage(page);
 	    paging.setTotalPages(totalPages);
 	    
+	    System.out.println("=====================");
+	    System.out.println(" page : " + page);
+	    System.out.println(" page : " + paging.getCurrentPage());
+	    
+	    
+	    System.out.println("=====================");
 	    model.addAttribute("boardList", boardList);
 	    model.addAttribute("page", paging);
 	    
