@@ -55,8 +55,22 @@ public class BoardMapperImpl implements BoardMapper {
 
     private ParamMap createParams(int offset, int limit) {
         ParamMap params = new ParamMap();
-        params.put("offset", offset);
-        params.put("limit", limit);
+        params.put("offset", offset); // offset:number
+        params.put("limit", limit); //  limit:5
         return params;
     }
+
+	public List<Board> getBoardListWithSearchValue(int offset, int limit, String searchValue) {
+        ParamMap params = new ParamMap();
+        params.put("offset", offset); // offset:number
+        params.put("limit", limit); //  limit:5
+        params.put("searchValue", searchValue);
+		return sqlSession.selectList(NAMESPACE + ".getBoardList", params);
+	}
+
+	public List<Board> getBoardEntireListWithSearchValue(String searchValue) {
+		ParamMap params = new ParamMap();
+		params.put("searchValue", searchValue); 
+		return sqlSession.selectList(NAMESPACE + ".getBoardList", params);
+	}
 }

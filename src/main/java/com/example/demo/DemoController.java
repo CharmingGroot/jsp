@@ -123,6 +123,16 @@ public class DemoController {
 	    
 	    return "boardList";
 	}
+	@GetMapping("/board/list/search")
+	public String boardListSearch(Model model) {
+		
+		String searchValue="b";
+		
+		List<Board> boardList = boardMapper.getBoardEntireListWithSearchValue(searchValue); // searchValue를 포함한 리스트 받아옴.
+		
+		model.addAttribute("boardList", boardList);
+		return "boardList";
+	}
 
 	
 	
