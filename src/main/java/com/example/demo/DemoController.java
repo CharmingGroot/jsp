@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,8 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.demo.board.Page;
+import com.example.demo.file.FileService;
 import com.example.demo.mapper.BoardMapper;
 import com.example.demo.mapper.BoardMapperImpl;
 import com.example.demo.vo.Board;
@@ -27,6 +31,11 @@ public class DemoController {
 
 	@Autowired
 	private BoardMapperImpl boardMapper;
+	
+	@Autowired
+	private FileService fileService;
+	
+	
 	
 	@RequestMapping("/")
 	public String index() {
@@ -60,7 +69,8 @@ public class DemoController {
 		System.out.println("base....");
 		return "base";
 	}
-	
+
+
 	
 
 	@RequestMapping("/hello/file")
@@ -135,10 +145,28 @@ public class DemoController {
 	}
 
 	
+	// 파일처리 연습
 	
 	
+	@RequestMapping("/file")
+	public String fileInput(HttpServletRequest request) throws Exception{
+		
+		System.out.println("파일 업로드 페이지");
+		
+		
+		return "FileIO";
+	}
 	
-	
+	@RequestMapping("/file/upload")
+	 public String fileIO(MultipartFile file) throws Exception{
+		System.out.println("파일 업로드 중 . . .");
+		fileService.fileUpload(file);
+
+		
+		
+		
+		return "redirect:/file";
+	}	
 	
 	
 	

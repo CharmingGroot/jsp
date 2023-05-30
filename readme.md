@@ -93,3 +93,21 @@ WHERE LOWER(column) LIKE LOWER('%apple%');
   - BEGIN, COMMIT, ROLLBACK등의 키워드를 사용하여 트랜잭션을 시작, 종료할 수 있음.
 
 
+
+
+
+
+
+
+
+- 프로시저(Procedure)
+  
+  - 쿼리를 묶어놓은 하나의 클래스라고 생각하면된다.
+
+
+
+
+
+- 트리거
+  
+  - 
