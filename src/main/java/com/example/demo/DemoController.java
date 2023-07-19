@@ -39,8 +39,8 @@ public class DemoController {
 	
 	@RequestMapping("/")
 	public String index() {
-		System.out.println("hi");
-		return "redirect:/index";
+		System.out.println("index");
+		return "/index";
 	}
 	
 	
